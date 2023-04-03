@@ -1,0 +1,23 @@
+{% extends 'blobing/base_layout.html'%}
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'blobing/style.css' %}" >
+
+{% block content %}
+<center>
+<div class="Create">
+    <form action="{% url 'blobing:articles' %}" method="post" enctype="multipart/form-data">
+      
+        <br/>
+        <h1> Create your Blog here:</h1><br/>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="button" class="btn btn-primary">Create</button><br/>
+        <br/>
+      
+    </form>
+</div>
+</center>
+<br/>
+{% endblock %}

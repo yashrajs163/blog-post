@@ -1,0 +1,19 @@
+{% extends 'blobing/base_layout.html' %}
+
+{% block content %}
+
+    <center>
+        {% if searched %}
+        <h2> You searched for {{ searched }}</h2>
+        <br/>
+        {% for article in articles %}
+        <a href="{% url 'blobing:details' article.id %} "> {{ article }} </a> <br/>
+        {% endfor %}
+
+        {% else %}
+        <h1> Hey! you forgot to type </h1>
+        {% endif %}
+    </center>
+   
+       
+{% endblock content %}

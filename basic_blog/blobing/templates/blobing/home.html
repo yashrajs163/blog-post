@@ -1,0 +1,62 @@
+{% extends 'blobing/base_layout.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'blobing/style.css' %}" >
+
+<!-- <header>
+  <h1 > The Blobing Blog </h1>
+  <p>
+    <small>By <em> Yash Raj </em></small>
+  </p>    
+</header> -->
+<div class="container">
+    {% for i in articles %}
+          <div class="card">
+            <div class="card-body">
+
+        <h2><a href='{% url "blobing:details" i.id %}'>{{ i.title }}</a></h2>
+          <p>   {{ i.get_readtime }} Read </p>
+          <p> {{ i.snippet }} </p>
+          <p> {{ i.pub_date }}</p>
+          <br>
+            </div>
+          </div>  
+    {% endfor %}
+</div>
+<br/><br/>
+<!---
+{{ articles }}<br/>
+Has previous : {{ articles.has_previous }} <br/>
+Has Next : {{ articles.has_next }} <br/>
+Current page : {{ articles.number }} <br/>
+Number of pages : {{ articles.paginator.num_pages }}
+<hr> <br/> <br/>
+-->
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    
+  {% if articles.has_previous %}
+    <li class="page-item"><a class="page-link" href="?page=1"> &laquo; First </a></li>
+    <li class="page-item"><a class="page-link" href="?page={{ articles.previous_page_number }}"> Previous </a></li>
+
+
+  {% endif %}
+
+  <!--<li class="page-item disabled"> <a class="page-link" href="#" >Page {{ articles.number }} of {{ articles.paginator.num_pages }} </a></li> -->
+
+  {% for i in nums %}
+    <li class="page-item"> <a class="page-link" href="?page= {{ forloop.counter }}">{{ forloop.counter }}</a></li>
+
+  {% endfor %}
+
+  {% if articles.has_next %}
+    <li class="page-item"><a class="page-link" href="?page= {{ articles.next_page_number }}"> Next </a></li>
+    <li class="page-item"><a class="page-link" href="?page= {{ articles.paginator.num_pages }}"> Last &raquo; </a></li>
+  {% endif %}
+
+  </ul>
+</nav>
+
+{% endblock content %}

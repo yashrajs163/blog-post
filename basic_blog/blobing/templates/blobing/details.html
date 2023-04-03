@@ -1,0 +1,24 @@
+{% extends "blobing/base_layout.html" %}
+{% load humanize %}
+{%  load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'blobing/style.css' %}" >
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<div class="article-detail">
+  <div class="card">
+    <div class="card-body">
+    <h2> {{ article.title }} </h2>
+    <p>   {{article.get_readtime}} Read </p>
+    <img style="width: 800px;"  src="{{ article.thumb.url }}">
+    <pre>  {{ article.body }} </pre>
+    <p>  {{ article.pub_date|naturaltime }} </p>
+    
+    </div>
+  </div>
+
+</div>
+
+
+{% endblock %}
