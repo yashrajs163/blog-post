@@ -1,0 +1,15 @@
+{% extends 'blobing/base_layout.html' %}
+
+{% block content %}
+<br/>
+<center>
+
+<form method="post">    
+<h1>  Log in: </h1>
+    {% csrf_token %}
+    {{ form.as_p }}
+<button type="submit"> Login </button>
+</form>
+
+</center>
+{%  endblock %}

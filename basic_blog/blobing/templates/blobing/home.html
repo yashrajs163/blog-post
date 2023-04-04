@@ -10,6 +10,7 @@
     <small>By <em> Yash Raj </em></small>
   </p>    
 </header> -->
+ 
 <div class="container">
     {% for i in articles %}
           <div class="card">
@@ -25,6 +26,8 @@
     {% endfor %}
 </div>
 <br/><br/>
+
+
 <!---
 {{ articles }}<br/>
 Has previous : {{ articles.has_previous }} <br/>
@@ -33,6 +36,8 @@ Current page : {{ articles.number }} <br/>
 Number of pages : {{ articles.paginator.num_pages }}
 <hr> <br/> <br/>
 -->
+
+<center>You have visited this site {{ num_visits }} time{{ num_visits|pluralize }}.</center>
 
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
