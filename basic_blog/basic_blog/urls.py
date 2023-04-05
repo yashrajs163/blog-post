@@ -19,12 +19,13 @@ from . import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
 from django.conf import settings
+from blobing import views as blobing_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', include('blobing.urls')),
     path('accounts/', include('accounts.urls')),
-    path('', views.home, name ='home')
+    path('', blobing_views.home, name ='home')
 ]
 
 urlpatterns += staticfiles_urlpatterns()

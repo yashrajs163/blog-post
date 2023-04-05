@@ -9,14 +9,14 @@
 <div class="article-detail">
   <div class="card">
     <div class="card-body">
-    <h2> {{ article.title }} </h2>
+    <h1> {{ article.title }} </h1>
+    <h5>  Article by : {{ article.author}} </h5>
     <p>   {{article.get_readtime}} Read </p>
-    <img style="width: 800px;"  src="{{ article.thumb.url }}">
+    <img style="width: 800px;"  src="{{ article.thumb.url }}"><br/><br/>
     <pre>  {{ article.body }} </pre>
     <p>  {{ article.pub_date|naturaltime }} </p>
     </div>
   </div>
-
 </div>
 
 

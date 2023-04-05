@@ -17,9 +17,9 @@ def search_blogs(request):
 
 
 def home(request):
-    article = Article.objects.all().order_by('-pub_date')
+    article = Article.objects.all().order_by('-pub_date') #have removed this 
     # set up pagination
-    p = Paginator(Article.objects.order_by('-pub_date'), 5) 
+    p = Paginator(Article.objects.order_by('-pub_date'), 2) 
     page = request.GET.get('page')
     articles = p.get_page(page)
     nums = "a" * articles.paginator.num_pages
@@ -27,8 +27,8 @@ def home(request):
     num_visits = request.session.get('num_visits', 0)
     request.session['num_visits'] = num_visits + 1
 
-    return render(request,'blobing/home.html', {'article':article,'articles':articles,'num_visits':num_visits})
-
+    return render(request,'blobing/home.html', {'articles':articles,'nums':nums, 'num_visits':num_visits})
+    
      
 
 @login_required(login_url='/accounts/login')
@@ -36,7 +36,9 @@ def Articles(request):
     if request.method == "POST":
         form = forms.CreateArticle(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            Instance=form.save(commit=False)
+            Instance.author=request.user
+            Instance.save()
             return redirect ('blobing:home')
     else:
         form = forms.CreateArticle()

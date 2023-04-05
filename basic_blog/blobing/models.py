@@ -1,5 +1,6 @@
 from django.db import models
 import readtime
+from django.contrib.auth.models import User
 
 
 
@@ -16,6 +17,7 @@ class Article(models.Model):
     pub_date = models.DateTimeField(auto_now_add=True)
     thumb = models.ImageField(default="default.png", blank=True )
     status = models.IntegerField(choices=STATUS, default=1) 
+    author = models.ForeignKey(User, default=None, on_delete=models.CASCADE)
     
     
 
