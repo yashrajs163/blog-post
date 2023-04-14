@@ -10,21 +10,28 @@
     <small>By <em> Yash Raj </em></small>
   </p>    
 </header> -->
- 
-<div class="container">
+</br>
+<div class="container-sm ">
     {% for i in articles %}
           <div class="card">
             <div class="card-body">
-
-        <h2><a href='{% url "blobing:details" i.id %}'>{{ i.title }}</a></h2>
-          <p>   {{ i.get_readtime }} Read </p>
-          <p> {{ i.snippet }} </p>
-          <p> {{ i.pub_date }}</p>
-          <br>
+            <div class="h4 pb-2 mb-4 text-danger border-bottom border-danger">
+          <h2 class="display-8"><a href='{% url "blobing:details" i.id %}' style="color: inherit;" >{{ i.title }}</a></h2>
+          </div>
+        <h4><span class="badge bg-secondary"> by : {{ i.author }}  </span> </h4>
+          <p> <i class="fa-solid fa-clock"></i>   {{ i.get_readtime }} read </p>
+          <div class="p-3 bg-dark bg-opacity-10 border border-dark border-start-0 rounded-end">
+          <p class="lead">  {{ i.snippet|safe }} </p>
+          <figcaption class="blockquote-footer , text-end">
+            Click on title to read the full article.
+          </figcaption>
+          </div> </br>
+          <p class="text-end"> <i class="fa-solid fa-calendar-days"></i> {{ i.pub_date }}</p>
+          <hr>
             </div>
           </div>  
     {% endfor %}
-</div>
+
 <br/><br/>
 
 
@@ -63,5 +70,5 @@ Number of pages : {{ articles.paginator.num_pages }}
 
   </ul>
 </nav>
-
+</div>
 {% endblock content %}

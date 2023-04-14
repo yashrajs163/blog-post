@@ -10,13 +10,29 @@
   <div class="card">
     <div class="card-body">
     <h1> {{ article.title }} </h1>
-    <h5>  Article by : {{ article.author}} </h5>
-    <p>   {{article.get_readtime}} Read </p>
+    <h4> <span class="badge bg-secondary">  Article by : {{ article.author}} </span> </h4>
+    <div>
+    {% if user.is_authenticated %}
+      {% if user.id == article.author.id %}
+        <a href="{% url 'blobing:edit-blogs' article.id %}" class="btn btn-info" type="button" > <i class="fa-regular fa-pen-to-square"></i> Edit Blog </a>
+        <a href="{% url 'blobing:delete-blogs' article.id %}" class="btn btn-danger" type="button" > <i class="fa-solid fa-trash"></i> Delete Blog </a>
+      
+        {% endif %}
+    {% endif %}
+    </div>    
+    <p>  <i class="fa-solid fa-clock"></i> {{article.get_readtime}} Read </p>
     <img style="width: 800px;"  src="{{ article.thumb.url }}"><br/><br/>
-    <pre>  {{ article.body }} </pre>
-    <p>  {{ article.pub_date|naturaltime }} </p>
+    <pre>  {{ article.body|safe }} </pre>
+    <p> <i class="fa-solid fa-calendar-days"></i> {{ article.pub_date|naturaltime }} </p>
     </div>
   </div>
+  <!-- <div class="col-md-4">
+    <ul class="list-group">
+      {% for article in articles  %}
+      <li class="list-group-item">{{ article.title }}</li>
+      {% endfor %}
+    </ul> 
+  </div> -->
 </div>
 
 

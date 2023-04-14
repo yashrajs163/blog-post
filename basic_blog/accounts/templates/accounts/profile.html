@@ -1,0 +1,81 @@
+{% extends 'blobing/base_layout.html' %}
+{% load static %}
+{% block content %}
+
+<div class="card mb-3 my-3 p-3" >
+    <div class="row g-0">
+        <div class="col-md-4">
+        <img src="{% static 'default.jpg' %}" class="img-fluid rounded-start" alt="">
+        </div>
+        <div class="col-md-8">
+        <div class="card-body">
+            <h5 class="card-title">{{ user.username }}</h5>
+            <p class="card-text">  </p>
+            <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+        </div>
+        </div>
+    </div>
+    </div>
+
+<div class="container">
+<div class="card ">
+
+<h5 class="card-header"> {{ user.username }}'s Profile</h5>
+<div class="card-body">
+    <h5 class="card-title">Hello!! &nbsp; <strong> {{ user.username }} </strong></h5></br>
+    {% if user.first_name %}
+    <p class="card-text">First Name : &nbsp; &nbsp; {{ user.first_name }} </p><hr>
+    {% else %}
+    <div class="alert alert-warning" role="alert">
+        <strong>First Name</strong> not provided by the user!
+    </div> <hr> 
+    {% endif %}
+    {% if user.last_name %}
+    <p class="card-text">last Name : &nbsp; &nbsp; {{ user.last_name }} </p><hr>
+    {% else %}
+    <div class="alert alert-warning" role="alert">
+        <strong>Last Name</strong> not provided by the user!
+    </div> <hr>
+    {% endif %}
+    {% if user.username %}
+    <p class="card-text"> Username : &nbsp; &nbsp; {{ user.username }} </p><hr>
+    {% else %}
+    <div class="alert alert-warning" role="alert">
+        <strong>Username</strong> not provided by the user!
+    </div> <hr>
+    {% endif %}
+    {% if user.email %}
+    <p class="card-text">Email : &nbsp; &nbsp; {{ user.email}} </p><hr>
+    {% else %}
+    <div class="alert alert-warning" role="alert">
+        <strong>Email</strong> not provided by the user!
+    </div> <hr>
+    {% endif %}
+    <div class="text-center">
+    <a href="#" class="btn btn-info" type="button" > Edit Profile </a>
+    <a href="{% url 'accounts:change_password' user.username %}" class="btn btn-primary" type="button" > Change Password   </a>
+    <a href="{% url 'accounts:delete' user.username %}" class="btn btn-danger" type="button" > Delete Profile </a>
+    </div>
+</div>
+</div>
+<hr>
+<h3> My Posts</h3>
+</div>
+{% for data in user_related_data %}
+<div class="container">
+<div class="card" >
+    <div class="card-body">
+      <blockquote class="blockquote mb-0">   
+           <p>  <a href= " {% url 'blobing:details' data.id %} ">  {{ data.title }} </a> </p>
+        </blockquote>
+    </div>
+    <div class="card-footer">
+        <a href="{% url 'blobing:edit-blogs' data.id %}" class="btn btn-info" type="button" > Edit Blog </a>
+        <a href="#" class="btn btn-danger" type="button" > Delete Blog </a>
+    </div>
+  </div>
+</div>
+  {% endfor %}
+<!-- <span class="badge text-bg-primary">Primary</span> -->
+
+{% endblock %}

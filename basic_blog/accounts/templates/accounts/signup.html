@@ -5,14 +5,54 @@
 {% block content %}
 
 
-<form ALIGN="center" method="post" class="sign-up-form">
+<!-- <form method="post" class="sign-up-form">
     <h1> Sign up : </h1>
     {% csrf_token %}
-    {% bootstrap_form form  %} 
-    <!-- <button type="submit"> Sign up </button> -->
+    {{  form.as_p  }}
     {% buttons %}
     <button type="submit" class="btn btn-primary">Submit</button>
     {% endbuttons %}
 
+</form> -->
+
+<form method="post">
+    <div class="container bg-dark">
+<div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10 col-sm-12">
+        <div class="card ">
+            {% csrf_token %}
+            <div class="card-body">
+                <h2 class="card-title">Sign up</h2></br>
+               <label for="fname" class="form-label"> First Name </label></br>
+                {{ form.first_name }} </br>
+                <label for="lname" class="form-label">Last Name </label>
+                {{ form.last_name }} </br>
+                <div class="col-6">
+                    <label for="username" class="form-label"> Username </label>
+                    {{ form.username }} </br>
+                </div>
+                <label for="email" class="form-label">E-Mail</label>
+                {{ form.email }} </br>
+                <div class="col-8">
+                    <label for="password" class="form-label">Password</label>
+                    {{ form.password1 }} </br>
+                </div>
+                <div class="col-md-8">
+                    <label for="confirm password" class="form-label">Confirm Password</label>
+                    {{ form.password2 }} </br>
+                </div>
+                <div class="d-grid gap-2">    
+                    <button type="submit" class="btn btn-primary"> Sign in </button>
+                </div>
+                <div class="card-footer text-muted text-center">
+                    Already have an account? <a href="{% url 'accounts:login' %}"> Log in</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
 </form>
+
 {% endblock %}

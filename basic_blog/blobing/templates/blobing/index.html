@@ -1,21 +1,36 @@
 {% extends 'blobing/base_layout.html'%}
 
 {% load static %}
+{% load bootstrap5 %}
 
 <link rel="stylesheet" href="{% static 'blobing/style.css' %}" >
 
 {% block content %}
 <center>
-<div class="Create">
+<div class="container p-3 my-3 bg-dark text-white">
     <form action="{% url 'blobing:articles' %}" method="post" enctype="multipart/form-data">
       
         <br/>
         <h1> Create your Blog here:</h1><br/>
         {% csrf_token %}
-        {{ form.as_p }}
+        <div class="col-sm-10">    
+        {{ form.title }}</br>
+        </div>
+        <div class="col-sm-10 ">
+            {{ form.body }}
+        </br>
+            {{ form.body.help_text }}
+        </br>
+        </div></br>
+        <div class="col-sm-5" >
+        {{ form.thumb }}</br>
+        </div>
+        <div class="col-sm-5 dropdown-toggle dropdown-toggle-split">
+        {{ form.status }}</br>
+        </div>
         <button type="submit" class="btn btn-primary">Create</button><br/>
         <br/>
-      
+        {{ form.media }}
     </form>
 </div>
 </center>

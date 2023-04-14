@@ -1,18 +1,32 @@
 {% extends 'blobing/base_layout.html' %}
 
 {% block content %}
-<br/>
+
 <center>
+  <div class="container p-3 my-5 bg-light w-50">
+    <!-- <div class="col-lg-4 col-md-6 col-sm-8"> -->
+    <div class="card w-50">
+      <h2 class="card-header">Log in</h2></br>
+      <form method="post" action="{% url 'accounts:login' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% if request.GET.next %}
+        <input type="hidden" name="next" value="{{ request.GET.next }}">
+        {% endif %}
+        <button  type="submit" class="btn btn-primary btn-block my-1"> Login </button>
+      
+      </form>
+    </div></br>
 
-<form method="post" action="{% url 'accounts:login' %}">    
-<h1>  Log in: </h1>
-    {% csrf_token %}
-    {{ form.as_p }}
-    {% if request.GET.next %}
-    <input type="hidden" name="next" value="{{ request.GET.next }}">
-    {% endif %}
-    <button type="submit"> Login </button> 
-</form>
-
+    <div class="card-footer text-muted text-center">
+      New to Blobing Blog ? <a href="{% url 'accounts:signup' %}">Sign up</a>
+    </div>
+    <small>
+      <a href="#" class="text-muted">Forgot your password?</a>
+    </small>
+  </div>
+  </div>
+  </div>
+  </div>
 </center>
-{%  endblock %}
+{% endblock %}

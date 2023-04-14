@@ -1,7 +1,7 @@
 from django.db import models
 import readtime
 from django.contrib.auth.models import User
-
+from ckeditor.fields import RichTextField
 
 
 # Create your models here.
@@ -13,7 +13,7 @@ STATUS = (
 
 class Article(models.Model):
     title = models.CharField(max_length=100)
-    body = models.TextField()
+    body = RichTextField(blank=True, null=True,  help_text='Text limit of 8000 words')
     pub_date = models.DateTimeField(auto_now_add=True)
     thumb = models.ImageField(default="default.png", blank=True )
     status = models.IntegerField(choices=STATUS, default=1) 
