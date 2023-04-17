@@ -4,11 +4,14 @@
 <br/>
 <center>
 
-<form method="post">    
+<form method="post" action="{% url 'accounts:login' %}">    
 <h1>  Log in: </h1>
     {% csrf_token %}
     {{ form.as_p }}
-<button type="submit"> Login </button>
+    {% if request.GET.next %}
+    <input type="hidden" name="next" value="{{ request.GET.next }}">
+    {% endif %}
+    <button type="submit"> Login </button> 
 </form>
 
 </center>

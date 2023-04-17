@@ -35,22 +35,26 @@
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searched">
         <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
-    <form  style="padding: 0px 10px;" method="post" action="{% url 'accounts:logout' %}">
-        {% csrf_token %}
-        <button class="btn btn-outline-dark" type="submit"> logout </button>   
-    </form>
-    
+    <div style="padding: 0px 10px" > 
+        {% if user.is_authenticated %} 
+    <form  method="post" action="{% url 'accounts:logout' %}">
+            {% csrf_token %}
+            <button class="btn btn-outline-dark" type="submit"> logout </button> 
+    </form>                
+        {% else %}
+        <a class="btn btn-outline-dark" href="{% url 'accounts:login' %}">Log In</a>
+        <a class="btn btn-outline-dark" href="{% url 'accounts:signup' %}">Sign Up</a>
+        {% endif %} 
+    </div>
     </div>
 </div>
 </nav>
 <header class="header">
     <h1 > The Blobing Blog </h1>
-    <!-- <p><small>By <em> Yash Raj </em></small></p> -->
     {% if user.is_authenticated %}
-    Hello {{ user.username }} !!
+    Hello {{ user.username }} !! 
     {% else %}
-    <p>You are not logged in</p>
-    <a class="btn btn-outline-light" href="{% url 'accounts:login' %}">Log In</a>
+    <p><small>By <em> Yash Raj </em></small></p>
     {% endif %}    
 </header>
 
